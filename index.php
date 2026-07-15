@@ -1,3 +1,6 @@
+<?php
+// Homepage entry point. Add server-side PHP here when needed.
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
