@@ -101,41 +101,54 @@ body {
     justify-content: center;        
 }
     
+/* 确保网格容器有足够的空间放一行三个 */
 .product {
-  
   width: 100%;                      
-  max-width: 800px;                 
+  max-width: 1000px; /* 从 800px 稍微调大一点，避免太拥挤 */                
   height: auto;                     
   padding: 20px;                    
   box-sizing: border-box;           
   display: grid;                    
   grid-template-columns: repeat(3, 1fr); 
   gap: 40px;                        
-  
 }
 
-.product-card{
-  height: 250px;                    
+/* 把死高度 250px 删掉，改成自动适应高度，并居中所有内容 */
+.product-card {
+  height: auto; /* 取消固定高度 */
+  padding-bottom: 20px; /* 底部留点白 */
   border: 1px solid #1a1a1a;        
   border-radius: 0px;               
   background-color: #f9f9f9;   
   position: relative;     
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  
+  /* 添加 Flexbox 让卡片内的内容垂直居中对齐 */
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
 }
 
-.photo{
-    height: 150px;
-    width:200px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    }
+.photo {
+  height: 150px;
+  width: 200px; /* 图片宽度是 200px */
+  object-fit: cover;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
 
+/* 让商品信息和按钮的容器，宽度严格锁定为和照片一样的 200px */
+.product-info {
+  width: 200px; 
+  text-align: center;
+}
 
 .product-info p {
   font-family: 'Poppins', 'PingFang SC', sans-serif;
   font-size: 14px;
-  color:red;
+  color: red;
   line-height: 1.6;
+  margin-bottom: 5px; /* 缩小文字之间的间距 */
 }
 
 .card-link {
