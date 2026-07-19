@@ -6,7 +6,7 @@ $category_id = isset($_GET['category_id']) ? (int)$_GET['category_id'] : 1;
 $servername = "localhost";
 $username = "root"; 
 $password = "";     
-$dbname = "web based"; 
+$dbname = "web ass"; 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
@@ -69,6 +69,12 @@ $result_products = $conn->query($sql_products);
                         echo '<p style="color: #333; font-weight: bold;">' . $row["name"] . '</p>'; // 名字改成黑色粗体更好看
                         echo '<p class="price" style="margin-bottom: 15px;">RM ' . $row["price"] . '</p>';
                         
+                        echo '<div class="qty-container">';
+                        echo '<button type="button" class="qty-btn qty-minus" data-id="' . $row["id"] . '">-</button>';
+                        echo '<input type="number" class="qty-input" id="qty-' . $row["id"] . '" value="1" min="1" max="' . $row["stock"] . '" readonly>';
+                        echo '<button type="button" class="qty-btn qty-plus" data-id="' . $row["id"] . '">+</button>';
+                        echo '</div>';
+                        
                         // 3. 按钮容器 (使用 Flexbox，平均分配剩余空间)
                         echo '<div style="display: flex; gap: 8px; width: 100%;">';
                         
@@ -96,37 +102,80 @@ $result_products = $conn->query($sql_products);
         <p class="copyright">© 2026 Pop Mart. All rights reserved.</p>
     </footer>
 
-    <!-- jQuery 交互功能 -->
+    
+     <!-- 图片放大模态框 (Modal) 容器 -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="enlargedImg">
+    </div>
+
+
+<!-- jQuery 交互功能 -->
     <script>
     $(document).ready(function() {
-        // 1. 加入购物车的点击效果 (留在原页)
-        $('.add-to-cart-btn').click(function() {
-            var productId = $(this).data('id');
-            var $btn = $(this);
-            
-            // 点击后改变按钮样式和文字
-            $btn.text('已加入!');
-            $btn.css('background-color', '#4CAF50'); // 变成绿色作为成功反馈
-            
-            // 1.5秒后恢复原状
-            setTimeout(function(){
-                $btn.text('加入购物车');
-                $btn.css('background-color', '#111');
-            }, 1500);
+            // 1. 数量加减逻辑
+            $('.qty-plus').click(function() {
+                var id = $(this).data('id');
+                var $input = $('#qty-' + id);
+                var currentVal = parseInt($input.val());
+                var maxVal = parseInt($input.attr('max')); // 获取库存上限
+                
+                if (currentVal < maxVal) {
+                    $input.val(currentVal + 1);
+                } else {
+                    alert("on MAXIMUM stock！");
+                }
+            });
 
-            // AJAX 发送到购物车模块 (这里后续你可以自己写 cart.php 逻辑)
-            // $.post('add_to_cart.php', { id: productId });
-        });
+            $('.qty-minus').click(function() {
+                var id = $(this).data('id');
+                var $input = $('#qty-' + id);
+                var currentVal = parseInt($input.val());
+                
+                if (currentVal > 1) {
+                    $input.val(currentVal - 1);
+                }
+            });
 
-        // 2. 立即购买的点击效果 (直接跳转)
-        $('.buy-now-btn').click(function() {
-            var productId = $(this).data('id');
-            
-            // 带着 productId 直接跳转到你的付款或结算页面
-            // 如果你的结算页面叫 payment.php，就这样写：
-            window.location.href = 'payment.php?product_id=' + productId;
+            // 2. 加入购物车的点击效果
+            $('.add-to-cart-btn').click(function() {
+                var productId = $(this).data('id');
+                var qty = $('#qty-' + productId).val(); // 获取当前选中的数量
+                var $btn = $(this);
+                
+                $btn.text('Added!');
+                $btn.css('background-color', '#4CAF50'); 
+                
+                setTimeout(function(){
+                    $btn.text('Add to Cart');
+                    $btn.css('background-color', '#111');
+                }, 1500);
+
+                // 将来写购物车 AJAX 时，记得把 qty 一起传过去
+            });
+
+            // 3. 立即购买的跳转逻辑 (带上数量)
+            $('.buy-now-btn').click(function() {
+                var productId = $(this).data('id');
+                var qty = $('#qty-' + productId).val(); // 获取当前选中的数量
+                
+                // 跳转时，URL 变成了 payment.php?product_id=X&qty=Y
+                window.location.href = 'payment.php?product_id=' + productId + '&qty=' + qty;
+            });
+
+            // 4. 放大图片的逻辑 (保留你之前的代码)
+            $('.photo').click(function() {
+                var imgSrc = $(this).attr('src'); 
+                $('#enlargedImg').attr('src', imgSrc); 
+                $('#imageModal').fadeIn(300); 
+            });
+
+            $('.close-modal, #imageModal').click(function(e) {
+                if (e.target !== $('#enlargedImg')[0]) {
+                    $('#imageModal').fadeOut(300); 
+                }
+            });
         });
-    });
     </script>
 </body>
 </html>

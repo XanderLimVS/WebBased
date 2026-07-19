@@ -66,7 +66,7 @@
     <div class="product">
         <div class="product-card">
             <a href="product.php?category_id=4" class="card-link"></a>
-            <img src="picture/Mythic Beast/Eagle.png" alt="product4" class="photo">
+            <img src="picture/Mythic Beast/Unicorn.png" alt="product4" class="photo">
             <div class="product-info">
                 <p>Mythic Beasts Series</p>
                 <p class="price">RM49.99</p>

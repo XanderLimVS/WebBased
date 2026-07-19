@@ -164,3 +164,103 @@ body {
   transform: translateY(-6px);  
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12); 
 }
+
+/* --- 放大图片的 Modal 样式 --- */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 9999; /* 确保它盖住页面上所有的东西 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* 酷炫的半透明黑底 */
+    backdrop-filter: blur(5px); /* 背景模糊效果，看起来更高级 */
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 绝对居中对齐 */
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    animation: zoomIn 0.3s ease; /* 添加一点放大的动画效果 */
+}
+
+/* 定义放大动画 */
+@keyframes zoomIn {
+    from {transform: translate(-50%, -50%) scale(0.8); opacity: 0;}
+    to {transform: translate(-50%, -50%) scale(1); opacity: 1;}
+}
+
+/* 右上角的关闭按钮 */
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    color: #D1001F; /* 鼠标放上去变成你的主题红 */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 让原本的盲盒图片鼠标放上去显示手指图标，提示用户可点击 */
+.photo {
+    cursor: pointer; 
+}
+
+/* --- 数量选择器样式 --- */
+.qty-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.qty-btn {
+    background-color: #f1f1f1;
+    border: none;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    transition: background-color 0.2s;
+}
+
+.qty-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.qty-input {
+    width: 40px;
+    text-align: center;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* 隐藏输入框自带的上下小箭头 */
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
