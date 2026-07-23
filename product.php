@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 
 // 3. (可选) 获取当前系列的名称，用来显示在页面标题
-$cat_name = "盲盒系列";
+$cat_name = "Series";
 $sql_cat = "SELECT name FROM categories WHERE id = $category_id";
 $result_cat = $conn->query($sql_cat);
 if ($result_cat->num_rows > 0) {
