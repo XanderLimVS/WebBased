@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="app.css">
 </head>
 <body>
-    <p>test </p>
 
     <header class="main-header">
         <div class="logo">MyWebsite</div>
