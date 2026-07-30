@@ -27,29 +27,10 @@ $sql_products = "SELECT * FROM products WHERE category_id = $category_id";
 $result_products = $conn->query($sql_products);
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $cat_name; ?></title>
-    <link rel="stylesheet" href="app.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
+<?php
+include("includes/header.php");
+?>
 
-    <header class="main-header">
-        <div class="logo">MyWebsite</div>
-        <nav class="nav-links">
-            <a href="index.php">Shop</a>
-            <a href="#">Cart</a>
-            <a href="#">Membership</a>
-            <a href="#">About us</a>
-            <a href="#">User</a>
-        </nav>
-    </header>
-
-    <main class="content">
         <div class="title" style="margin-bottom: 2rem;">
             <h1 style="color: #D1001F;"><?php echo $cat_name; ?></h1>
         </div>
