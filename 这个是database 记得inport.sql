@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `web ass`
 --
-CREATE DATABASE IF NOT EXISTS `web ass` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+CREATE DATABASE IF NOT EXISTS `web ass` DEFAULT CHARACTER SET utf8mb4 COLLATE=utf8mb4_general_ci;
 USE `web ass`;
 
 -- --------------------------------------------------------
@@ -181,6 +181,30 @@ ALTER TABLE `users`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart_item`
+--
+
+CREATE TABLE `cart_item` (
+    `Cart_Item_ID` INT NOT NULL AUTO_INCREMENT,
+    `User_ID` INT NOT NULL,
+    `Product_ID` INT NOT NULL,
+    `Quantity` INT NOT NULL DEFAULT 1,
+
+    PRIMARY KEY (`Cart_Item_ID`),
+
+    FOREIGN KEY (`User_ID`)
+        REFERENCES `users`(`id`)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY (`Product_ID`)
+        REFERENCES `products`(`id`)
+        ON DELETE CASCADE
+);
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
