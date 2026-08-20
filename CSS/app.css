@@ -19,11 +19,13 @@ body {
 
 .main-header {
     display: flex;
+    justify-content:left;
     align-items: center;
     padding: 1rem 2rem;
     background-color: #D1001F;
     color: #fff;
 }
+
 .main-header .logo {
     font-size: 2rem;
     font-weight: bold;
@@ -40,6 +42,15 @@ body {
     color: #00bcd4; 
 }
 
+.nav-links {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.user-status {
+    margin-left: auto;
+}
 
 .content {
     flex: 1; 
@@ -263,6 +274,7 @@ body {
     margin: 0;
 }
 
+
 #info {
     position: fixed;
     color: #fff;
@@ -280,26 +292,11 @@ body {
 
 #info:not(:empty) {
     animation: fade 5s;
-}
+} 
 
 @keyframes fade {
-    0% {
-        top: -100px;
-        opacity: 0;
-    }
-
-    10% {
-        top: 100px;
-        opacity: 1;
-    }
-
-    90% {
-        top: 100px;
-        opacity: 1;
-    }
-
-    100% {
-        top: -100px;
-        opacity: 0;
-    }
+      0% { top: -100px; opacity: 0; }
+     10% { top:  100px; opacity: 1; }
+     90% { top:  100px; opacity: 1; }
+    100% { top: -100px; opacity: 0; }
 }

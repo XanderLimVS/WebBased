@@ -12,21 +12,37 @@
     <header class="main-header">
         <div class="logo">MyWebsite</div>
         <nav class="nav-links">
+        <?php if ($_user): ?>   
             <a href="index.php">Shop</a>
             <a href="cart.php">Cart</a>
             <a href="userprofile/profile.php">User</a> 
             <a href="login.php">Login</a>
-            <a href="logout.php">logout</a>
+            <a href="logout.php">Logout</a>
+
             <div class="user-status">
-        <?php if ($_user): ?>
-            <?= $_user->name ?><br>
-            <?= $_user->role ?>
+                <?php if ($_user): ?>
+                    <?= $_user->name ?><br>
+                    <?= $_user->role ?>
+                <?php else: ?>
+                    Guest
+                <?php endif ?>
+            </div>
         <?php else: ?>
-            Guest
-        <?php endif ?>
-    </div>
+            <a href="index.php">Shop</a>
+            <a href="userprofile/profile.php">User</a> 
+            <a href="login.php">Login</a>
+            <a href="logout.php">Logout</a>
+
+            <div class="user-status">
+                <?php if ($_user): ?>
+                    <?= $_user->name ?><br>
+                    <?= $_user->role ?>
+                <?php else: ?>
+                    Guest
+                <?php endif ?>
+            </div>
             
-            
+         <?php endif ?>
             
        
         </nav>

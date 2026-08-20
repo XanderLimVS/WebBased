@@ -25,9 +25,9 @@ if ($result_cat && $result_cat->num_rows > 0) {
 // 4. 获取该系列下的所有商品
 $sql_products = "SELECT * FROM products WHERE category_id = $category_id";
 $result_products = $conn->query($sql_products);
-
-include("includes/header.php");
 include("includes/base.php");
+include("includes/header.php");
+
 ?>
 
 <div class="title" style="margin-bottom: 2rem;">
