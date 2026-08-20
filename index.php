@@ -1,7 +1,10 @@
 <?php
+include("includes/base.php");
 include("includes/header.php");
 ?>
-
+<div id="info">
+    <?= temp('info') ?>
+    </div>
 <div class="auto-scrolling"></div>
 
 <div class="title">

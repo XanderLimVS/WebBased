@@ -27,6 +27,7 @@ $sql_products = "SELECT * FROM products WHERE category_id = $category_id";
 $result_products = $conn->query($sql_products);
 
 include("includes/header.php");
+include("includes/base.php");
 ?>
 
 <div class="title" style="margin-bottom: 2rem;">
@@ -70,9 +71,7 @@ include("includes/header.php");
     </div>
 </div>
 
-<footer class="main-footer">
-    <p class="copyright">© 2026 Pop Mart. All rights reserved.</p>
-</footer>
+
 
 <!-- 图片放大模态框 (Modal) 容器 -->
 <div id="imageModal" class="modal">

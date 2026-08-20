@@ -2,6 +2,7 @@
 session_start();
 include("includes/header.php");
 
+
 // 1. Connect to Database
 $servername = "localhost";
 $username = "root";
@@ -27,9 +28,12 @@ if ($result->num_rows === 0) {
     echo "<div style='text-align:center; padding: 50px;'><h2>Product Not Found</h2><a href='index.php'>Back to Home</a></div>";
     include("includes/footer.php");
     exit();
+
 }
 
 $product = $result->fetch_assoc();
+
+
 ?>
 
 <div class="detail-container">
