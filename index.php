@@ -3,7 +3,7 @@ include("includes/base.php");
 include("includes/header.php");
 ?>
 <div id="info">
-    <?= temp('info') ?>
+    <?= temp('info' ) ?>
 </div>
 
 

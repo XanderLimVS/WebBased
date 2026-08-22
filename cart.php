@@ -1,5 +1,7 @@
 <?php
 include("includes/base.php");
+auth('user');
+
 
 // --- 1. HANDLE CART UPDATE & REMOVE AJAX REQUESTS ---
 // This handles the +, -, and Remove buttons directly without needing extra files.

@@ -216,11 +216,11 @@ function logout($url = '/') {
 }
 
 // Authorization
-function auth(...$roles) {
+function auth(...$user_type) {
     global $_user;
     if ($_user) {
-        if ($roles) {
-            if (in_array($_user->role, $roles)) {
+        if ($user_type) {
+            if (in_array($_user->user_type, $user_type)) {
                 return; // OK
             }
         }

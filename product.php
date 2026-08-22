@@ -2,6 +2,7 @@
 // 1. 获取主页传过来的 category_id，如果没有则默认为 1
 $category_id = isset($_GET['category_id']) ? (int)$_GET['category_id'] : 1;
 
+
 // 2. 连接数据库
 $servername = "localhost";
 $username = "root"; 

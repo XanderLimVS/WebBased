@@ -125,7 +125,7 @@ CREATE TABLE `users` (
   `phone` varchar(20) NOT NULL,
   `address` text NOT NULL,
   `user_status` enum('active','inactive','banned') DEFAULT 'active',
-  `user_type` enum('admin','customer') DEFAULT 'customer',
+  `user_type` enum('admin','user') DEFAULT 'user',
   `coins` int(11) DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)

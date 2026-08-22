@@ -1,6 +1,6 @@
 <?php
 include('includes/base.php');
-
+auth('user');
 // 模拟用户已经登录（在真实的作业里，这段代码应该在你的 login.php 里执行，这里为了测试强制赋值）
 $user_id = $_SESSION['user']->id;
 
