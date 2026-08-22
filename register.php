@@ -3,6 +3,9 @@ include 'includes/base.php';
   
 // ----------------------------------------------------------------------------  
 //(username, full_name, email, password, phone, address, user_type 
+
+
+
 if (is_post()) {  
     $username = req('username');  
     $full_name = req('fullname'); 

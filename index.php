@@ -6,6 +6,7 @@ include("includes/header.php");
     <?= temp('info') ?>
 </div>
 
+
 <div class="auto-scrolling"></div>
 
 <div class="title">

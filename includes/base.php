@@ -97,9 +97,6 @@ function is_email($value) {
 // ============================================================================
 
 // Placeholder for TODO
-function TODO() {
-    echo '<span>TODO</span>';
-}
 
 
 

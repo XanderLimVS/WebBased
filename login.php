@@ -11,6 +11,9 @@
 <?php
 include 'includes/base.php';
 
+
+
+
 if (is_post()) {
     $email    = req('email');
     $password = req('password');
@@ -47,6 +50,7 @@ if (is_post()) {
             $_err['password'] = 'Not matched';
         }
     }
+  
 }
 
 // ----------------------------------------------------------------------------
@@ -58,6 +62,7 @@ include 'includes/header.php'; //html_password is to set pw to *******
 
     <div class="container">
         <h1>Login</h1>
+        
 
         <form method="post" class="form">
             <div class="user">
