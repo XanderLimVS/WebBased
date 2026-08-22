@@ -1,13 +1,16 @@
 <?php
-session_start();
+include('includes/base.php');
 
 // 模拟用户已经登录（在真实的作业里，这段代码应该在你的 login.php 里执行，这里为了测试强制赋值）
-$_SESSION['user_id'] = 1; 
+$user_id = $_SESSION['user']->id;
+
 
 // 确保拿到了网址传过来的商品 ID 和已登录的用户 ID
 $product_id = isset($_GET['product_id']) ? (int)$_GET['product_id'] : 0;
 $qty = isset($_GET['qty']) ? (int)$_GET['qty'] : 1;
-$user_id = isset($_SESSION['user_id']) ? (int)$_SESSION['user_id'] : 0;
+$user_id = isset($_SESSION['user']->id) ? (int)$_SESSION['user']->id : 0;
+
+
 
 if ($product_id == 0 || $user_id == 0) {
     die("Error：No product or user found！");

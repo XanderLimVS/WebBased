@@ -49,7 +49,7 @@ include("includes/header.php");
                 
                 // 2. 信息和按钮的容器 (CSS已限制为 200px 宽)
                 echo '<div class="product-info">';
-                echo '<p><a href="product_detail.php?id=' . $row["id"] . '" style="color: #333; font-weight: bold; text-decoration: none;">' . $row["name"] . '</a></p>'; 
+                echo '<p><a href="product_details.php?id=' . $row["id"] . '" style="color: #333; font-weight: bold; text-decoration: none;">' . $row["name"] . '</a></p>'; 
                 echo '<p class="price" style="margin-bottom: 15px;">RM ' . $row["price"] . '</p>';
                 
                 echo '<div class="qty-container">';
