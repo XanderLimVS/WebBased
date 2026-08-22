@@ -11,8 +11,6 @@
 <?php
 include 'includes/base.php';
 
-// ----------------------------------------------------------------------------
-
 if (is_post()) {
     $email    = req('email');
     $password = req('password');
@@ -77,11 +75,9 @@ include 'includes/header.php'; //html_password is to set pw to *******
 
             <button type="submit" class="login">Login</button>
         </form>
-
     </div>
-
-    
-</form>
+</body>
+</html>
 
 
 
