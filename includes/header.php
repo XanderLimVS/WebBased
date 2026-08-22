@@ -29,6 +29,7 @@
             <a href="index.php">Shop</a>
             <a href="userprofile/profile.php">User</a> 
             <a href="login.php">Login</a>
+            <a href="register.php">Register</a>
             
 
             <div class="user-status">           

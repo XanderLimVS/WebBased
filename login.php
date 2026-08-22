@@ -78,10 +78,6 @@ include 'includes/header.php'; //html_password is to set pw to *******
             <button type="submit" class="login">Login</button>
         </form>
 
-        <p>
-            Don't have an account?
-            <a href="userprofile/register.html">Register</a>
-        </p>
     </div>
 
     
