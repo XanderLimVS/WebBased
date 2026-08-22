@@ -1,5 +1,5 @@
 <?php
-include '../base.php';
+include 'includes/base.php';
 
 // ----------------------------------------------------------------------------
 
@@ -18,7 +18,7 @@ if (is_post()) {
     }
     else {
         $stm = $_db->prepare('
-            SELECT COUNT(*) FROM user
+            SELECT COUNT(*) FROM users
             WHERE password = SHA1(?) AND id = ?
         ');
         $stm->execute([$password, $_user->id]);
@@ -47,7 +47,7 @@ if (is_post()) {
 
     if (!$_err) {
         $stm = $_db->prepare('
-            UPDATE user
+            UPDATE users
             SET password = SHA1(?)
             WHERE id = ?
         ');
@@ -61,7 +61,7 @@ if (is_post()) {
 // ----------------------------------------------------------------------------
 
 $_title = 'User | Password';
-include '../header.php';
+include 'includes/header.php';
 ?>
 
 <form method="post" class="form">
@@ -84,4 +84,4 @@ include '../header.php';
 </form>
 
 <?php
-include '../footer.php';
+include 'includes/footer.php';

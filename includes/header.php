@@ -18,6 +18,8 @@
             <a href="cart.php">Cart</a>
             <a href="userprofile/profile.php">User</a> 
             <a href="logout.php">Logout</a>
+            <a href="password.php">Reset password</a>
+    
 
             <div class="user-status">
                     <?= $_user->username ?><br>
