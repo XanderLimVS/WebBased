@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f6f8;
+    color: #333;
+}
+
+.container {
+    width: 100%;
+    max-width: 420px;
+    margin: 80px auto;
+    padding: 35px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+}
+
+.container h1 {
+    margin: 0 0 30px;
+    text-align: center;
+    font-size: 30px;
+    color: #222;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.user,
+.password {
+    display: flex;
+    flex-direction: column;
+}
+
+.user label,
+.password label {
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #444;
+}
+
+.user input,
+.password input {
+    width: 100%;
+    padding: 12px 14px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.user input:focus,
+.password input:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
+}
+
+.user .err,
+.password .err {
+    margin-top: 6px;
+    color: #d93025;
+    font-size: 13px;
+}
+
+.login {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 7px;
+    background: #4a90e2;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.login:hover {
+    background: #357abd;
+}
+
+.login:active {
+    transform: scale(0.98);
+}
