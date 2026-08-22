@@ -1,5 +1,5 @@
 <?php
-include '../_base.php';
+include '../base.php';
 
 // ----------------------------------------------------------------------------
 
@@ -61,7 +61,7 @@ if (is_post()) {
 // ----------------------------------------------------------------------------
 
 $_title = 'User | Password';
-include '../_head.php';
+include '../header.php';
 ?>
 
 <form method="post" class="form">
@@ -84,4 +84,4 @@ include '../_head.php';
 </form>
 
 <?php
-include '../_foot.php';
+include '../footer.php';
