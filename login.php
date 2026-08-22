@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Layout</title>
+    <link rel="stylesheet" href="userprofile/style123.css">
+</head>
+<body>
+
 <?php
 include 'includes/base.php';
 
@@ -24,7 +34,7 @@ if (is_post()) {
     if (!$_err) {
         // TODO
         $stm = $_db->prepare('
-            SELECT * FROM user
+            SELECT * FROM users
             WHERE email = ? AND password = SHA1(?)
         ');
         $stm->execute([$email,$password]);
@@ -47,23 +57,36 @@ $_title = 'Login';
 include 'includes/header.php'; //html_password is to set pw to *******
 ?>
 
-<form method="post" class="form">
-    <label for="email">Email</label>
-    <?= html_text('email', 'maxlength="100"') ?>
-    <?= err('email') ?>
-    
-   
-    <label for="password">Password</label>  
-    <?= html_password('password', 'maxlength="100"') ?> 
-    <?= err('password') ?>
 
-    <section>
-        <button>Login</button>
-        <button type="reset">Reset</button>
-    </section>
+    <div class="container">
+        <h1>Login</h1>
+
+        <form method="post" class="form">
+            <div class="user">
+
+                <label for="email">Email</label>
+                    <?= html_text('email', 'maxlength="100"') ?>
+                     <?= err('email') ?>
+            </div>
+
+            <div class="password">
+                <label for="password">Password</label>  
+                <?= html_password('password', 'maxlength="100"') ?> 
+                <?= err('password') ?>
+            </div>
+
+            <button type="submit" class="login">Login</button>
+        </form>
+
+        <p>
+            Don't have an account?
+            <a href="userprofile/register.html">Register</a>
+        </p>
+    </div>
+
+    
 </form>
 
 
-<?php
-include 'includes/footer.php';
+
 

@@ -30,6 +30,7 @@ include("includes/header.php");
 
 ?>
 
+
 <div class="title" style="margin-bottom: 2rem;">
     <h1 style="color: #D1001F;"><?php echo $cat_name; ?></h1>
 </div>
@@ -59,8 +60,8 @@ include("includes/header.php");
                 
                 // 3. 按钮容器 (使用 Flexbox，平均分配剩余空间)
                 echo '<div style="display: flex; gap: 8px; width: 100%;">';
-                echo '<button class="add-to-cart-btn" data-id="' . $row["id"] . '" style="flex: 1; padding: 8px 0; background-color: #111; color: #fff; border: none; cursor: pointer; border-radius: 3px; font-weight: bold; font-size: 12px; transition: 0.3s;">Add to Cart</button>';
-                echo '<button class="buy-now-btn" data-id="' . $row["id"] . '" style="flex: 1; padding: 8px 0; background-color: #D1001F; color: #fff; border: none; cursor: pointer; border-radius: 3px; font-weight: bold; font-size: 12px; transition: 0.3s;">Buy Now</button>';
+                echo '<button  class="add-to-cart-btn" data-id="' . $row["id"] . '" style="flex: 1; padding: 8px 0; background-color: #111; color: #fff; border: none; cursor: pointer; border-radius: 3px; font-weight: bold; font-size: 12px; transition: 0.3s;">Add to Cart</button>';
+                echo '<button onclick= "check_buy()" class="buy-now-btn" data-id="' . $row["id"] . '" style="flex: 1; padding: 8px 0; background-color: #D1001F; color: #fff; border: none; cursor: pointer; border-radius: 3px; font-weight: bold; font-size: 12px; transition: 0.3s;">Buy Now</button>';
                 echo '</div>'; 
                 
                 echo '</div>'; // 结束 product-info

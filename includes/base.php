@@ -101,6 +101,8 @@ function TODO() {
     echo '<span>TODO</span>';
 }
 
+
+
 // Encode HTML special characters
 function encode($value) {
     return htmlentities($value);
@@ -233,12 +235,15 @@ function auth(...$roles) {
     redirect('/login.php');
 }
 
+
+
+
 // ============================================================================
 // Database Setups and Functions
 // ============================================================================
 
 // Global PDO object
-$_db = new PDO('mysql:dbname=db7', 'root', '', [
+$_db = new PDO('mysql:dbname=web ass', 'root', '', [
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
 ]);
 
@@ -257,7 +262,11 @@ function is_exists($value, $table, $field) {
     $stm->execute([$value]);
     return $stm->fetchColumn() > 0;
 }
+
 // ============================================================================
 // Global Constants and Variables
 // ============================================================================
+
+
+
 

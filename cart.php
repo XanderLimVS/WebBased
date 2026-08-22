@@ -1,7 +1,6 @@
 <?php
 include("includes/base.php");
 
-
 // --- 1. HANDLE CART UPDATE & REMOVE AJAX REQUESTS ---
 // This handles the +, -, and Remove buttons directly without needing extra files.
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
@@ -64,7 +63,6 @@ $result = $conn->query($sql);
 // 计算购物车总价
 $total = 0;
 
-
 include("includes/header.php");
 ?>
 
@@ -90,7 +88,7 @@ include("includes/header.php");
         <?php
         // 显示购物车商品
         if ($result->num_rows > 0) {
-            while ($row = $result->f etch_assoc()) {
+            while ($row = $result->fetch_assoc()) {
 
                 // 商品小计
                 $subtotal = $row["price"] * $row["Quantity"];
