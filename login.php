@@ -39,11 +39,11 @@ if (is_post()) {
             WHERE email = ? AND password = SHA1(?)
         ');
         $stm->execute([$email,$password]);
-        $u = $stm->fetch();
+        $user = $stm->fetch();
 
-        if ($u) {
+        if ($user) {
             temp('info', 'Login successfully');
-            login($u);
+            login($user);
             // TODO
         }
         else {
