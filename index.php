@@ -2,6 +2,19 @@
 include("includes/base.php");
 include("includes/header.php");
 ?>
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Layout</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+=======
+>>>>>>> 1c761255e033de836e628cbdff5520fe4ef494b3
 
 
 <div id="info">
