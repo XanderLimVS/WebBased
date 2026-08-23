@@ -2,7 +2,7 @@
 include("includes/base.php");
 include("includes/header.php");
 ?>
-<<<<<<< HEAD
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,8 +13,7 @@ include("includes/header.php");
 </head>
 <body>
 
-=======
->>>>>>> 1c761255e033de836e628cbdff5520fe4ef494b3
+
 
 
 <div id="info">
