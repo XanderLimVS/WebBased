@@ -1,6 +1,8 @@
 <?php
-// Homepage entry point. Add server-side PHP here when needed.
+include("includes/base.php");
+include("includes/header.php");
 ?>
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,19 +13,14 @@
 </head>
 <body>
 
+=======
+>>>>>>> 1c761255e033de836e628cbdff5520fe4ef494b3
 
-    <header class="main-header">
-        <div class="logo">MyWebsite</div>
-        <nav class="nav-links">
-            <a href="#">Shop</a>
-            <a href="#">Cart</a>
-            <a href="#">Membership</a>
-            <a href="#">About us</a>
-            <a href="#">User</a>
-        </nav>
-    </header>
 
-<main class="content">
+<div id="info">
+    <?= temp('info' ) ?>
+</div>
+
 
 
 <div class="auto-scrolling"></div>
@@ -93,13 +90,6 @@
     </div>
 </div>
     
-</main>
-
-
-    <footer class="main-footer">
-         <p class="copyright">© 2026 Pop Mart. All rights reserved.</p>
-</div>
-    </footer>
-
-</body>
-</html>
+<?php
+include("includes/footer.php");
+?>
