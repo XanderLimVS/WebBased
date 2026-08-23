@@ -16,7 +16,7 @@
         <?php if ($_user): ?>   
             <a href="index.php">Shop</a>
             <a href="cart.php">Cart</a>
-            <a href="userprofile/profile.php">User</a> 
+            <a href="userprofile.php">User</a> 
             <a href="logout.php">Logout</a>
             <a href="password.php">Reset password</a>
     
@@ -29,7 +29,7 @@
 
         <?php else: ?>
             <a href="index.php">Shop</a>
-            <a href="userprofile/profile.php">User</a> 
+            <a href="userprofile.php">User</a> 
             <a href="login.php">Login</a>
             <a href="register.php">Register</a>
             

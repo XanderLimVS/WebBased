@@ -1,0 +1,171 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+.profile-container {
+    width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+.profile-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ff4d8d;
+    font-size: 30px;
+}
+
+.form {
+    width: 100%;
+}
+
+.form > label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 7px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"] {
+    width: 100%;
+    height: 40px;
+    padding: 8px 12px;
+    box-sizing: border-box;
+
+    border: 2px solid #ddd;
+    border-radius: 10px;
+
+    font-size: 15px;
+    outline: none;
+}
+
+.form input[type="text"]:focus,
+.form input[type="email"]:focus,
+.form input[type="password"]:focus {
+    border-color: #ff4d8d;
+}
+
+.upload {
+    display: block;
+    width: 160px;
+    height: 160px;
+    margin: 15px auto;
+    border: 3px dashed #ff4d8d;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: #fafafa;
+}
+
+.upload img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.upload:hover {
+    opacity: 0.8;
+    border-color: #ff4d8d;
+}
+
+.error {
+    display: block;
+    margin-top: 5px;
+    color: red;
+    font-size: 14px;
+}
+
+.form section {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.form button {
+    width: 120px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.form button[type="submit"] {
+    background-color: #ff4d8d;
+    color: white;
+}
+
+.form button[type="submit"]:hover {
+    background-color: #e63d78;
+}
+
+.form button[type="reset"] {
+    background-color: #ddd;
+    color: #333;
+}
+
+.form button[type="reset"]:hover {
+    background-color: #bbb;
+}
+
+.form section a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 40px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: #555;
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.form section a:hover {
+    background-color: #333;
+}
+
+@media (max-width: 600px) {
+    .profile-container {
+        width: 90%;
+        margin: 30px auto;
+        padding: 20px;
+    }
+
+    .profile-container h1 {
+        font-size: 25px;
+    }
+
+    .upload {
+        width: 130px;
+        height: 130px;
+    }
+
+    .form section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form button,
+    .form section a {
+        width: 100%;
+    }
+}
