@@ -1,0 +1,8 @@
+-user(folder)
+psswd.php
+profile.php
+register.php
+
+-photo(folder)
+image-female.jpg
+image-male.jpg
