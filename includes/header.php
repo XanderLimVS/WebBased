@@ -13,13 +13,25 @@
         <div class="logo">MyWebsite</div>
         <nav class="nav-links">
             
-        <?php if ($_user): ?>   
+        <?php if ($_user && ($_user->user_type == 'user' || $_user->user_type == 'member')): ?>   
             <a href="index.php">Shop</a>
             <a href="cart.php">Cart</a>
             <a href="userprofile/profile.php">User</a> 
             <a href="logout.php">Logout</a>
             <a href="password.php">Reset password</a>
     
+
+            <div class="user-status">
+                    <?= $_user->username ?><br>
+                    <?= $_user->user_type?>
+                
+            </div>
+
+        <?php elseif ($_user && $_user->user_type == 'admin'): ?>
+
+            <a href="admin/additem.php">Product</a>
+            <a href="#">Member</a>
+            <a href="logout.php">Logout</a>
 
             <div class="user-status">
                     <?= $_user->username ?><br>

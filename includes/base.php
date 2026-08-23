@@ -206,6 +206,7 @@ $_user = $_SESSION['user'] ?? null; //to see any user logged in
 // Login user
 function login($user, $url = '/') {
     $_SESSION['user'] = $user; // this user is array
+    
     redirect($url);
 }
 

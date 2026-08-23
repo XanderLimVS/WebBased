@@ -33,23 +33,33 @@ if (is_post()) {
 
     // Login user
     if (!$_err) {
-        // TODO
-        $stm = $_db->prepare('
-            SELECT * FROM users
-            WHERE email = ? AND password = SHA1(?)
-        ');
-        $stm->execute([$email,$password]);
-        $user = $stm->fetch();
 
-        if ($user) {
-            temp('info', 'Login successfully');
-            login($user);
-            // TODO
+    
+    $stm = $_db->prepare('
+        SELECT * FROM users 
+        WHERE email = ? AND password = SHA1(?)
+    ');
+
+    $stm->execute([$email, $password]);
+    $user = $stm->fetch();
+
+    if ($user) {
+
+        temp('info', 'Login successfully');
+
+        
+        if ($user->user_type == 'admin') {
+            login($user, 'admin/additem.php');
         }
         else {
-            $_err['password'] = 'Not matched';
+            login($user, 'index.php');
         }
+
     }
+    else {
+        $_err['password'] = 'Not matched';
+    }
+}
   
 }
 
