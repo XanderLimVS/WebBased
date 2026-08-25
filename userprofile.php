@@ -2,38 +2,38 @@
 include 'includes/base.php';
 
 auth();
-
 if (is_get()) {
     $stm = $_db->prepare('SELECT * FROM users WHERE id = ?');
     $stm->execute([$_user->id]);
     $u = $stm->fetch();
 
-    // User not found
     if (!$u) {
         redirect('/');
     }
-
-    // Convert database data into variables
     extract((array)$u);
-
-    // Save current photo
-    $_SESSION['photo'] = $u->photo;
 }
 
-// POST: Update profile
 if (is_post()) {
+    $username  = req('username');
+    $full_name = req('full_name');
+    $email     = req('email');
+    $phone     = req('phone');
+    $address   = req('address');
 
-    // Get submitted data
-    $email = req('email');
-    $name  = req('name');
+    if ($username == '') {
+        $_err['username'] = 'Required';
+    }
+    else if (strlen($username) > 50) {
+        $_err['username'] = 'Maximum 50 characters';
+    }
 
-    // Keep old photo
-    $photo = $_SESSION['photo'];
+    if ($full_name == '') {
+        $_err['full_name'] = 'Required';
+    }
+    else if (strlen($full_name) > 100) {
+        $_err['full_name'] = 'Maximum 100 characters';
+    }
 
-    // Get uploaded file
-    $f = get_file('photo');
-
-    // Validate Email
     if ($email == '') {
         $_err['email'] = 'Required';
     }
@@ -43,71 +43,37 @@ if (is_post()) {
     else if (!is_email($email)) {
         $_err['email'] = 'Invalid email';
     }
-    else {
 
-        // Check if another user already uses this email
-        $stm = $_db->prepare('SELECT COUNT(*) FROM users WHERE email = ? AND id != ?');
-        $stm->execute([$email, $_user->id]);
-
-        if ($stm->fetchColumn() > 0) {
-            $_err['email'] = 'Duplicated';
-        }
+    if ($phone == '') {
+        $_err['phone'] = 'Required';
+    }
+    else if (strlen($phone) > 20) {
+        $_err['phone'] = 'Maximum 20 characters';
     }
 
-    // Validate Name
-    if ($name == '') {
-        $_err['name'] = 'Required';
+    if ($address == '') {
+        $_err['address'] = 'Required';
     }
-    else if (strlen($name) > 100) {
-        $_err['name'] = 'Maximum 100 characters';
-    }
-
-    // Validate Photo
-    if ($f) {
-        // Check image type
-        if (!str_starts_with($f->type, 'image/')) {
-            $_err['photo'] = 'Must be an image';
-        }
-
-        // Check file size
-        else if ($f->size > 1 * 1024 * 1024) {
-            $_err['photo'] = 'Maximum 1MB';
-        }
+    else if (strlen($address) > 255) {
+        $_err['address'] = 'Maximum 255 characters';
     }
 
-    // Update Database
     if (!$_err) {
-        // If user uploads a new photo
-        if ($f) {
-            // Delete old photo if it exists
-            if ($photo && file_exists("photos/$photo")) {
-                unlink("photos/$photo");
-            }
-            // Save new photo
-            $photo = save_photo($f, 'photos');
-        }
+        $stm = $_db->prepare('UPDATE users SET username = ?, full_name = ?, email = ?, phone = ?, address = ? WHERE id = ?');
+        $stm->execute([$username, $full_name, $email, $phone, $address, $_user->id]);
 
-        // Update user information
-        $stm = $_db->prepare('UPDATE users SET email = ?, name = ?, photo = ? WHERE id = ?');
-        $stm->execute([$email, $name, $photo, $_user->id]);
+        $_user->username  = $username;
+        $_user->full_name = $full_name;
+        $_user->email     = $email;
+        $_user->phone     = $phone;
+        $_user->address   = $address;
 
-        // Update logged-in user information
-        $users->email = $email;
-        $users->name  = $name;
-        $users->photo = $photo;
-
-        // Update session photo
-        $_SESSION['photo'] = $photo;
-
-        // Show message
         temp('info', 'Profile updated successfully');
-
-        // Go back to home page
-        redirect('/');
+        redirect('/userprofile.php');
     }
 }
 
-$_title = 'My Profile';
+$_title = 'User Profile';
 include 'includes/header.php';
 ?>
 
@@ -117,40 +83,69 @@ include 'includes/header.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/userprofile.css">
-    <title>Profile</title>
+    <title>User Profile</title>
 </head>
+<body>
 
 <div class="profile-container">
     <h1>User Profile</h1>
-    <form method="post" class="form" enctype="multipart/form-data">
-        <label for="email">Email</label>
-        <input type="email" name="email" maxlength="100">
+    <form method="post" class="form">
+        <label for="username">USERNAME</label>
+        <input type="text" id="username" name="username" maxlength="50" value="<?= htmlspecialchars($username ?? '') ?>">
+        <?php if (isset($_err['username'])): ?>
+            <span class="error"><?= htmlspecialchars($_err['username']) ?></span>
+        <?php endif; ?>
+
+        <label for="full_name">FULL NAME</label>
+        <input type="text" id="full_name" name="full_name" maxlength="100" value="<?= htmlspecialchars($full_name ?? '') ?>">
+        <?php if (isset($_err['full_name'])): ?>
+            <span class="error"><?= htmlspecialchars($_err['full_name']) ?></span>
+        <?php endif; ?>
+
+        <label for="email">EMAIL</label>
+        <input type="email" id="email" name="email" maxlength="100" value="<?= htmlspecialchars($email ?? '') ?>">
         <?php if (isset($_err['email'])): ?>
-            <span class="error"><?= $_err['email'] ?></span>
+            <span class="error"><?= htmlspecialchars($_err['email']) ?></span>
         <?php endif; ?>
 
-        <label for="name">Name</label>
-        <input type="text" name="name" maxlength="100">
-        <?php if (isset($_err['name'])): ?>
-            <span class="error"><?= $_err['name'] ?></span>
+        <label for="phone">PHONE</label>
+        <input type="tel" id="phone" name="phone" maxlength="20" value="<?= htmlspecialchars($phone ?? '') ?>">
+        <?php if (isset($_err['phone'])): ?>
+            <span class="error"><?= htmlspecialchars($_err['phone']) ?></span>
         <?php endif; ?>
 
-        <label for="photo">Profile Photo</label>
-        <label class="upload" tabindex="0">
-            <input type="file" id="photo" name="photo" accept="image/*" hidden>
-            <img src="/photos/<?= htmlspecialchars($photo ?? 'default.jpg') ?>" alt="Profile Photo">
-        </label>
-        <?php if (isset($_err['photo'])): ?>
-            <span class="error"><?= htmlspecialchars($_err['photo']) ?></span>
+        <label for="address">ADDRESS</label>
+        <textarea id="address" name="address" rows="4" maxlength="255" ><?= htmlspecialchars($address ?? '') ?></textarea>
+        <?php if (isset($_err['address'])): ?>
+            <span class="error"><?= htmlspecialchars($_err['address']) ?></span>
         <?php endif; ?>
+
+        <div class="account-info">
+            <div>
+                <span>COINS</span>
+                <strong><?= htmlspecialchars($coins ?? 0) ?></strong>
+            </div>
+
+            <div>
+                <span>STATUS</span>
+                <strong><?= htmlspecialchars($user_status ?? 'active') ?></strong>
+            </div>
+
+            <div>
+                <span>ACCOUNT TYPE</span>
+                <strong><?= htmlspecialchars($user_type ?? 'user') ?></strong>
+            </div>
+        </div>
 
         <section>
-            <button type="submit">Save</button>
-            <button type="reset">Reset</button>
-            <a href="/">Cancel</a>
+            <button type="submit">SAVE</button>
+            <button type="reset">RESET</button>
+            <a href="/">CANCEL</a>
         </section>
-    </form>
+        </form>
 </div>
+</body>
+</html>
 
 <?php
 include 'includes/footer.php';
